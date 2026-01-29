@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Haruka Happy Birthday</title>
+
+<style>
+body{
+  font-family: sans-serif;
+  text-align: center;
+  background: #f5f5f5;
+  overflow:hidden;
+}
+
+.box{
+  margin-top: 80px;
+  padding: 30px;
+  background: white;
+  display: inline-block;
+  border-radius: 12px;
+}
+
+button{
+  margin-top:20px;
+  font-size:20px;
+  padding:12px 25px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.confetti{
+  position:fixed;
+  width:10px;
+  height:10px;
+  bottom:0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+  <h1>🎉 Haruka Happy Birthday 🎉</h1>
+  <p>お誕生日おめでとう！！</p>
+
+  <button onclick="pop()">🎊 クラッカー！</button>
+</div>
+
+<script>
+function pop(){
+  for(let i=0;i<120;i++){
+    const c=document.createElement("div");
+    c.className="confetti";
+
+    const leftSide = Math.random() < 0.5;
+
+    c.style.left = leftSide ? "0px" : "100vw";
+    c.style.background = `hsl(${Math.random()*360},100%,50%)`;
+
+    const x = leftSide ? Math.random()*400 : -Math.random()*400;
+    const y = -300 - Math.random()*300;
+
+    c.animate([
+      { transform:"translate(0,0)" },
+      { transform:`translate(${x}px, ${y}px) rotate(360deg)` }
+    ],{
+      duration:2000 + Math.random()*1000,
+      easing:"ease-out",
+      fill:"forwards"
+    });
+
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),4000);
+  }
+}
+</script>
+
+</body>
+</html>
